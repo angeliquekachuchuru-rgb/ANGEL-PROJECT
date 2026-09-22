@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PBPA Corporate Enterprise Platform</title>
+<style>
+:root{--nav:#071d35;--nav2:#0c2d50;--accent:#0b6e4f;--gold:#c69a35;--bg:#f4f7fa;--text:#172033;--muted:#64748b;--line:#dfe6ee;--danger:#b42318;--warn:#b54708;--ok:#067647}
+*{box-sizing:border-box}body{margin:0;font:14px Inter,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--text)}
+.shell{display:grid;grid-template-columns:270px 1fr;min-height:100vh}.sidebar{background:linear-gradient(180deg,var(--nav),var(--nav2));color:#fff;padding:24px 18px;position:sticky;top:0;height:100vh;overflow:auto}
+.brand{display:flex;gap:12px;align-items:center;padding:4px 8px 22px;border-bottom:1px solid #ffffff20}.seal{width:48px;height:48px;border-radius:14px;background:#fff;color:var(--nav);display:grid;place-items:center;font-weight:900;letter-spacing:.5px}.brand h2{margin:0;font-size:20px}.brand small{opacity:.68}
+.nav{margin-top:20px}.nav button{width:100%;border:0;background:transparent;color:#dce8f4;text-align:left;padding:12px 14px;margin:3px 0;border-radius:9px;cursor:pointer;font-weight:600}.nav button:hover,.nav button.active{background:#ffffff16;color:#fff}.nav .group{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;opacity:.5;margin:18px 12px 7px}
+.content{min-width:0}.topbar{height:74px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:4}.topbar h1{font-size:21px;margin:0}.user{display:flex;align-items:center;gap:10px}.avatar{width:36px;height:36px;border-radius:50%;background:var(--nav);color:#fff;display:grid;place-items:center;font-weight:800}.main{padding:26px;max-width:1600px;margin:auto}
+.hero{background:linear-gradient(110deg,#08233f,#0b4b63);color:#fff;padding:26px;border-radius:16px;display:flex;justify-content:space-between;gap:20px;align-items:center}.hero h2{margin:0 0 8px;font-size:26px}.hero p{margin:0;opacity:.78}.pill{padding:8px 12px;border-radius:999px;background:#ffffff18;border:1px solid #ffffff28}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:18px}.card,.panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 2px 8px #102a4310}.card{padding:18px}.card .label{color:var(--muted);font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.6px}.card strong{display:block;font-size:27px;margin:9px 0 4px}.trend{font-size:12px;color:var(--ok)}.panel{padding:20px;margin-top:18px}.panel h3{margin:0 0 15px;font-size:16px}.split{display:grid;grid-template-columns:1.4fr 1fr;gap:18px}
+table{width:100%;border-collapse:collapse}th,td{padding:12px 10px;border-bottom:1px solid #edf1f5;text-align:left;white-space:nowrap}th{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--muted);background:#fafbfc}.tablewrap{overflow:auto}
+.badge{display:inline-block;padding:5px 9px;border-radius:999px;font-size:11px;font-weight:700}.b-ok{background:#ecfdf3;color:var(--ok)}.b-warn{background:#fffaeb;color:var(--warn)}.b-danger{background:#fef3f2;color:var(--danger)}.b-info{background:#eff8ff;color:#175cd3}
+.btn{border:1px solid #cfd8e3;background:#fff;padding:9px 12px;border-radius:8px;cursor:pointer;font-weight:650}.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}.btn.danger{color:var(--danger)}.actions{display:flex;gap:8px;flex-wrap:wrap}
+input,select,textarea{width:100%;padding:10px 11px;border:1px solid #cfd8e3;border-radius:8px;background:#fff;font:inherit}.formgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.field label{display:block;font-size:12px;font-weight:700;margin:0 0 6px;color:#475467}.field.full{grid-column:1/-1}
+.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:14px}.toolbar input{max-width:320px}.muted{color:var(--muted)}.ok{color:var(--ok)}.warn{color:var(--warn)}.danger{color:var(--danger)}
+.flow{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.flow span{padding:10px 12px;border:1px solid var(--line);background:#f8fafc;border-radius:9px}.servicegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.service{padding:15px;border:1px solid var(--line);border-radius:11px}.service b{display:block;margin-bottom:5px}.toast{position:fixed;right:24px;bottom:24px;background:#101828;color:#fff;padding:12px 16px;border-radius:9px;box-shadow:0 8px 30px #0003;display:none;z-index:9}
+.modal{position:fixed;inset:0;background:#0b172680;display:none;align-items:center;justify-content:center;padding:20px;z-index:8}.modalbox{background:#fff;border-radius:14px;padding:22px;width:min(620px,100%);max-height:85vh;overflow:auto}.modalhead{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}.modalhead h3{margin:0}
+@media(max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr}.servicegrid{grid-template-columns:repeat(2,1fr)}}@media(max-width:760px){.shell{display:block}.sidebar{position:relative;height:auto}.nav{display:grid;grid-template-columns:repeat(2,1fr)}.nav .group{grid-column:1/-1}.topbar{padding:0 16px}.main{padding:16px}.grid,.servicegrid,.formgrid{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}}
+
+.login-screen{position:fixed;inset:0;background:linear-gradient(135deg,#06192d,#0b4b63);z-index:30;display:grid;place-items:center;padding:20px}
+.login-card{width:min(460px,100%);background:#fff;border-radius:18px;padding:30px;box-shadow:0 30px 80px #0005}
+.login-brand{display:flex;align-items:center;gap:13px;margin-bottom:24px}.login-brand .seal{background:var(--nav);color:#fff}
+.login-card h2{margin:0}.login-card .field{margin:12px 0}.login-card .btn{width:100%;margin-top:8px}
+.hidden{display:none!important}.codebox{display:flex;gap:8px}.codebox input{text-align:center;font-size:22px;letter-spacing:8px}
+.dropzone{border:2px dashed #b8c5d4;border-radius:12px;padding:26px;text-align:center;background:#f8fafc;cursor:pointer}.dropzone.drag{border-color:var(--accent);background:#ecfdf3}
+.api-card{padding:14px;border:1px solid var(--line);border-radius:10px;margin:8px 0;background:#fbfcfd}.api-card code{font-size:12px;color:#175cd3}
+.hook-log{font-family:ui-monospace,Consolas,monospace;font-size:12px;background:#081a2d;color:#d6e6f5;padding:14px;border-radius:10px;max-height:250px;overflow:auto}
+.switch{display:inline-flex;align-items:center;gap:8px}.switch input{width:auto}
+
+</style>
+</head>
+<body>
+
+<div id="loginScreen" class="login-screen">
+ <div class="login-card">
+  <div class="login-brand"><div class="seal">PBPA</div><div><h2>Corporate Enterprise Platform</h2><div class="muted">Secure identity access</div></div></div>
+  <div id="loginStep">
+   <div class="field"><label>Email / Username</label><input id="loginUser" value="admin@pbpa.go.tz" autocomplete="username"></div>
+   <div class="field"><label>Password</label><input id="loginPass" type="password" value="PBPA@2026" autocomplete="current-password"></div>
+   <button class="btn primary" onclick="beginLogin()">Sign in</button>
+   <p class="muted" style="font-size:12px">Demo account: admin@pbpa.go.tz / PBPA@2026</p>
+  </div>
+  <div id="mfaStep" class="hidden">
+   <h3>Two-factor authentication</h3><p class="muted">Enter the 6-digit authenticator code. Demo code: <b>260922</b></p>
+   <div class="field codebox"><input id="mfaCode" inputmode="numeric" maxlength="6" placeholder="000000"></div>
+   <button class="btn primary" onclick="verifyMFA()">Verify & continue</button>
+   <button class="btn" onclick="backLogin()">Back</button>
+  </div>
+ </div>
+</div>
+
+<div class="shell">
+<aside class="sidebar">
+ <div class="brand"><div class="seal">PBPA</div><div><h2>Enterprise Platform</h2><small>Secure Digital Operations</small></div></div>
+ <nav class="nav">
+  <div class="group">Executive</div>
+  <button data-view="dashboard" onclick="showView('dashboard')">▦ Executive Dashboard</button>
+  <button data-view="reports" onclick="showView('reports')">▥ Reports & Analytics</button>
+  <div class="group">Core Operations</div>
+  <button data-view="demands" onclick="showView('demands')">◫ Demand Management</button>
+  <button data-view="tenders" onclick="showView('tenders')">◆ Tender Management</button>
+  <button data-view="vessels" onclick="showView('vessels')">◈ Vessel Operations</button>
+  <button data-view="terminals" onclick="showView('terminals')">▤ Terminal & Stock</button>
+  <button data-view="finance" onclick="showView('finance')">¤ Billing & Debt</button>
+  <button data-view="documents" onclick="showView('documents')">▣ Documents</button>
+  <div class="group">Governance & Technology</div>
+  <button data-view="workflow" onclick="showView('workflow')">✓ Workflow & Approvals</button>
+  <button data-view="security" onclick="showView('security')">◉ Security Centre</button>
+  <button data-view="aisecurity" onclick="showView('aisecurity')">◇ GenAI Security Controls</button>
+  <button data-view="services" onclick="showView('services')">⌁ Microservices</button>
+  <button data-view="api" onclick="showView('api')">⇄ API & Webhooks</button>
+  <button data-view="files" onclick="showView('files')">⇧ File Centre</button>
+  <button data-view="profile" onclick="showView('profile')">♙ My Profile & 2FA</button>
+  <button data-view="admin" onclick="showView('admin')">⚙ Administration</button>
+ </nav>
+</aside>
+<div class="content">
+<header class="topbar"><div><h1 id="pageTitle">Executive Dashboard</h1><div class="muted" style="font-size:12px">Petroleum Bulk Procurement Agency</div></div><div class="user"><span class="badge b-ok">● Platform Online</span><div class="avatar">AK</div><div><b id="currentUserName">System Administrator</b><div class="muted" style="font-size:11px" id="currentRole">Corporate Access</div></div>
+<button class="btn" onclick="logout()">Log out</button></div></header>
+<main class="main" id="app"></main>
+</div>
+</div>
+<div id="toast" class="toast"></div>
+<div id="modal" class="modal"><div class="modalbox"><div class="modalhead"><h3 id="modalTitle"></h3><button class="btn" onclick="closeModal()">Close</button></div><div id="modalBody"></div></div></div>
+<script>
+const $=s=>document.querySelector(s), esc=v=>String(v??'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+const defaults={
+ demands:[{id:'DEM-26091',omc:'Lake Energy',product:'AGO',qty:12000,period:'Nov 2026',status:'Validated'},{id:'DEM-26092',omc:'Alpha Petroleum',product:'PMS',qty:8500,period:'Nov 2026',status:'Submitted'}],
+ tenders:[{id:'TEN-026',title:'AGO November Supply',close:'30 Sep 2026',status:'Evaluation'},{id:'TEN-027',title:'PMS December Supply',close:'12 Oct 2026',status:'Open'}],
+ vessels:[{id:'VES-110',vessel:'MV Horizon',cargo:'AGO',quantity:38000,terminal:'KOJ',eta:'25 Sep 2026',status:'Scheduled'},{id:'VES-111',vessel:'MT Meridian',cargo:'PMS',quantity:34500,terminal:'TIPER',eta:'27 Sep 2026',status:'Documentation'}],
+ terminals:[{terminal:'KOJ',capacity:39000,stock:27840,status:'Operational'},{terminal:'TIPER',capacity:52000,stock:41300,status:'Operational'},{terminal:'Tanga Terminal',capacity:30000,stock:18650,status:'Operational'}],
+ invoices:[{id:'INV-6011',party:'Lake Energy',amount:184500000,status:'Pending'},{id:'INV-6012',party:'Alpha Petroleum',amount:92500000,status:'Paid'}],
+ docs:[{id:'DOC-101',name:'Terminal Hospitality Agreement',owner:'Operations',version:'v3.1',status:'Approved'},{id:'DOC-102',name:'Tender Evaluation Report',owner:'Procurement',version:'v1.0',status:'Review'}],
+ approvals:[{id:'APR-88',item:'Demand DEM-26092',owner:'Head of Operations',status:'Pending'},{id:'APR-89',item:'Tender TEN-026 Evaluation',owner:'Legal Manager',status:'Pending'}],
+ alerts:[{severity:'High',event:'Repeated privileged login failures',control:'IAM / MFA / PAM',status:'Investigate'},{severity:'Medium',event:'API rate threshold exceeded',control:'API Gateway / WAF',status:'Contained'}],
+ users:[{name:'System Administrator',email:'admin@pbpa.go.tz',role:'Administrator',mfa:'Enabled',status:'Active'},{name:'Operations Manager',email:'operations@pbpa.go.tz',role:'Approver',mfa:'Enabled',status:'Active'},{name:'Internal Auditor',email:'audit@pbpa.go.tz',role:'Audit Viewer',mfa:'Enabled',status:'Active'}],
+ files:[{id:'FIL-1001',name:'BPS-MIS Architecture.pdf',type:'application/pdf',size:'1.8 MB',owner:'ICT',uploaded:'22 Sep 2026',status:'Stored'}],
+ hooks:[{id:'WH-01',event:'demand.created',endpoint:'https://example.gov/hook/demand',enabled:'Yes',last:'Never'},{id:'WH-02',event:'vessel.arrived',endpoint:'https://example.gov/hook/vessel',enabled:'No',last:'Never'}],
+ apiKeys:[{id:'KEY-01',name:'GovSB Integration',scope:'read:omc write:verification',status:'Active'}]
+};
+function load(k){return JSON.parse(localStorage.getItem('pbpa_'+k)||'null')||structuredClone(defaults[k])}
+function save(k,v){localStorage.setItem('pbpa_'+k,JSON.stringify(v))}
+let db={}; Object.keys(defaults).forEach(k=>db[k]=load(k));
+function toast(msg){let t=$('#toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
+function badge(s){let c=/paid|approved|validated|operational|active|healthy|contained/i.test(s)?'b-ok':/high|failed|overdue/i.test(s)?'b-danger':/pending|review|evaluation|documentation/i.test(s)?'b-warn':'b-info';return `<span class="badge ${c}">${esc(s)}</span>`}
+function table(rows,actions=''){if(!rows.length)return '<p class="muted">No records available.</p>';let keys=Object.keys(rows[0]);return `<div class=tablewrap><table><thead><tr>${keys.map(k=>`<th>${esc(k)}</th>`).join('')}${actions?'<th>Actions</th>':''}</tr></thead><tbody>${rows.map((r,i)=>`<tr>${keys.map(k=>`<td>${k==='status'||k==='severity'?badge(r[k]):esc(r[k])}</td>`).join('')}${actions?`<td>${actions.replaceAll('{i}',i)}</td>`:''}</tr>`).join('')}</tbody></table></div>`}
+function setNav(v){document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===v))}
+function hero(title,sub){return `<section class=hero><div><h2>${title}</h2><p>${sub}</p></div><span class=pill>DevSecOps • Zero Trust • API First</span></section>`}
+function openModal(title,body){$('#modalTitle').textContent=title;$('#modalBody').innerHTML=body;$('#modal').style.display='flex'} function closeModal(){$('#modal').style.display='none'}
+function showView(v){setNav(v);let title={dashboard:'Executive Dashboard',reports:'Reports & Analytics',demands:'Demand Management',tenders:'Tender Management',vessels:'Vessel Operations',terminals:'Terminal & Stock',finance:'Billing & Debt',documents:'Document Management',workflow:'Workflow & Approvals',security:'Security Centre',aisecurity:'GenAI Security Controls',services:'Microservice Operations',api:'API & Webhooks',files:'File Centre',profile:'My Profile & 2FA',admin:'Administration'}[v];$('#pageTitle').textContent=title;
+ if(v==='dashboard') dashboard(); if(v==='demands') demands(); if(v==='tenders') tenders(); if(v==='vessels') vessels(); if(v==='terminals') terminals(); if(v==='finance') finance(); if(v==='documents') documents(); if(v==='workflow') workflow(); if(v==='security') security(); if(v==='aisecurity') aiSecurity(); if(v==='services') services(); if(v==='reports') reports(); if(v==='api') apiView(); if(v==='files') filesView(); if(v==='profile') profileView(); if(v==='admin') admin();
+}
+function dashboard(){$('#app').innerHTML=hero('Corporate Operations Command Centre','Integrated enterprise visibility across procurement, petroleum operations, finance, security and technology.')+`<div class=grid>
+<div class=card><div class=label>Registered OMCs</div><strong>114</strong><span class=trend>Enterprise registry</span></div>
+<div class=card><div class=label>Active Demands</div><strong>${db.demands.length}</strong><span class=trend>Current submission cycle</span></div>
+<div class=card><div class=label>Vessels Tracked</div><strong>${db.vessels.length}</strong><span class=trend>Operational visibility</span></div>
+<div class=card><div class=label>Pending Approvals</div><strong>${db.approvals.filter(x=>x.status==='Pending').length}</strong><span class=warn>Requires attention</span></div></div>
+<div class=split><div class=panel><h3>Operational Overview</h3>${table(db.vessels)}</div><div class=panel><h3>Executive Alerts</h3>${table(db.alerts)}</div></div>
+<div class=panel><h3>Enterprise Architecture</h3><div class=flow><span>Corporate SPA</span>→<span>WAF / API Gateway</span>→<span>IAM / MFA</span>→<span>Domain Microservices</span>→<span>Event Bus / GovSB</span>→<span>Data Platform</span>→<span>SIEM / SOC</span></div></div>`}
+function demands(){$('#app').innerHTML=hero('Demand Management','Capture, validate and govern petroleum demand submissions.')+`<div class=panel><div class=toolbar><h3>Demand Register</h3><button class="btn primary" onclick="newDemand()">+ New Demand</button></div>${table(db.demands,`<button class="btn" onclick="validateDemand({i})">Validate</button> <button class="btn danger" onclick="removeRow('demands',{i})">Delete</button>`)}</div>`}
+function newDemand(){openModal('New Demand',`<div class=formgrid><div class=field><label>OMC</label><input id=f1></div><div class=field><label>Product</label><select id=f2><option>AGO</option><option>PMS</option><option>JET A1</option></select></div><div class=field><label>Quantity MT</label><input id=f3 type=number min=1></div><div class=field><label>Period</label><input id=f4 value="Nov 2026"></div><div class="field full"><button class="btn primary" onclick="saveDemand()">Submit Demand</button></div></div>`)}
+function saveDemand(){if(!$('#f1').value||Number($('#f3').value)<=0)return toast('Enter valid demand information');db.demands.unshift({id:'DEM-'+Math.floor(10000+Math.random()*89999),omc:$('#f1').value,product:$('#f2').value,qty:Number($('#f3').value),period:$('#f4').value,status:'Submitted'});save('demands',db.demands);closeModal();demands();toast('Demand submitted')}
+function validateDemand(i){db.demands[i].status='Validated';save('demands',db.demands);demands();toast('Demand validated')}
+function tenders(){$('#app').innerHTML=hero('Tender Management','Manage tender creation, publication, evaluation and award workflow.')+`<div class=panel><div class=toolbar><h3>Tender Register</h3><button class="btn primary" onclick="newTender()">+ Create Tender</button></div>${table(db.tenders,`<button class=btn onclick="advance('tenders',{i},'Evaluation')">Evaluate</button> <button class=btn onclick="advance('tenders',{i},'Awarded')">Award</button>`)}</div>`}
+function newTender(){openModal('Create Tender',`<div class=formgrid><div class="field full"><label>Title</label><input id=f1></div><div class=field><label>Closing Date</label><input id=f2 type=date></div><div class="field full"><button class="btn primary" onclick="saveTender()">Create Tender</button></div></div>`)}
+function saveTender(){if(!$('#f1').value)return toast('Enter tender title');db.tenders.unshift({id:'TEN-'+Math.floor(100+Math.random()*899),title:$('#f1').value,close:$('#f2').value||'TBD',status:'Open'});save('tenders',db.tenders);closeModal();tenders();toast('Tender created')}
+function vessels(){$('#app').innerHTML=hero('Vessel Operations','Coordinate vessel line-up, cargo, terminal and discharge readiness.')+`<div class=panel><div class=toolbar><h3>Vessel Line-up</h3><button class="btn primary" onclick="newVessel()">+ Add Vessel</button></div>${table(db.vessels,`<button class=btn onclick="advance('vessels',{i},'Arrived')">Mark Arrived</button>`)}</div>`}
+function newVessel(){openModal('Add Vessel',`<div class=formgrid><div class=field><label>Vessel</label><input id=f1></div><div class=field><label>Cargo</label><select id=f2><option>AGO</option><option>PMS</option><option>JET A1</option></select></div><div class=field><label>Quantity MT</label><input id=f3 type=number></div><div class=field><label>Terminal</label><input id=f4></div><div class=field><label>ETA</label><input id=f5 type=date></div><div class="field full"><button class="btn primary" onclick="saveVessel()">Add Vessel</button></div></div>`)}
+function saveVessel(){if(!$('#f1').value)return toast('Enter vessel name');db.vessels.unshift({id:'VES-'+Math.floor(100+Math.random()*899),vessel:$('#f1').value,cargo:$('#f2').value,quantity:Number($('#f3').value||0),terminal:$('#f4').value,eta:$('#f5').value,status:'Scheduled'});save('vessels',db.vessels);closeModal();vessels();toast('Vessel added')}
+function terminals(){$('#app').innerHTML=hero('Terminal & Stock Management','Monitor terminal capacity and petroleum stock positions.')+`<div class=grid>${db.terminals.map(x=>`<div class=card><div class=label>${esc(x.terminal)}</div><strong>${esc(x.stock.toLocaleString())} MT</strong><span class=muted>Capacity ${esc(x.capacity.toLocaleString())} MT</span><div style="margin-top:9px">${badge(x.status)}</div></div>`).join('')}</div><div class=panel><h3>Terminal Register</h3>${table(db.terminals)}</div>`}
+function finance(){$('#app').innerHTML=hero('Billing, Payments & Debt','Provide controlled financial processing and reconciliation visibility.')+`<div class=panel><div class=toolbar><h3>Invoices</h3><button class="btn primary" onclick="newInvoice()">+ New Invoice</button></div>${table(db.invoices,`<button class=btn onclick="advance('invoices',{i},'Paid')">Mark Paid</button>`)}</div>`}
+function newInvoice(){openModal('New Invoice',`<div class=formgrid><div class=field><label>Party</label><input id=f1></div><div class=field><label>Amount TZS</label><input id=f2 type=number></div><div class="field full"><button class="btn primary" onclick="saveInvoice()">Create Invoice</button></div></div>`)}
+function saveInvoice(){if(!$('#f1').value||!$('#f2').value)return toast('Enter invoice details');db.invoices.unshift({id:'INV-'+Math.floor(1000+Math.random()*8999),party:$('#f1').value,amount:Number($('#f2').value),status:'Pending'});save('invoices',db.invoices);closeModal();finance();toast('Invoice created')}
+function documents(){$('#app').innerHTML=hero('Corporate Document Management','Govern controlled records, versions, ownership and approval status.')+`<div class=panel><div class=toolbar><h3>Document Register</h3><button class="btn primary" onclick="newDoc()">+ Register Document</button></div>${table(db.docs,`<button class=btn onclick="advance('docs',{i},'Approved')">Approve</button>`)}</div>`}
+function newDoc(){openModal('Register Document',`<div class=formgrid><div class="field full"><label>Document Name</label><input id=f1></div><div class=field><label>Owner</label><input id=f2></div><div class=field><label>Version</label><input id=f3 value="v1.0"></div><div class="field full"><button class="btn primary" onclick="saveDoc()">Register</button></div></div>`)}
+function saveDoc(){if(!$('#f1').value)return toast('Enter document name');db.docs.unshift({id:'DOC-'+Math.floor(100+Math.random()*899),name:$('#f1').value,owner:$('#f2').value||'ICT',version:$('#f3').value,status:'Review'});save('docs',db.docs);closeModal();documents();toast('Document registered')}
+function workflow(){$('#app').innerHTML=hero('Workflow & Approvals','Apply segregation of duties and controlled approval routing.')+`<div class=panel><h3>Approval Inbox</h3>${table(db.approvals,`<button class=btn onclick="advance('approvals',{i},'Approved')">Approve</button> <button class="btn danger" onclick="advance('approvals',{i},'Rejected')">Reject</button>`)}</div>`}
+function security(){$('#app').innerHTML=hero('Cybersecurity Operations Centre','Central security posture, threat visibility and STRIDE controls.')+`<div class=grid><div class=card><div class=label>STRIDE Coverage</div><strong>6 / 6</strong><span class=trend>Threat classes mapped</span></div><div class=card><div class=label>IAM / MFA</div><strong>Active</strong><span class=trend>Zero-trust access</span></div><div class=card><div class=label>Audit Logging</div><strong>Enabled</strong><span class=trend>Centralized telemetry</span></div><div class=card><div class=label>Security Gate</div><strong>Required</strong><span class=trend>CI/CD enforcement</span></div></div><div class=split><div class=panel><h3>Security Alerts</h3>${table(db.alerts,`<button class=btn onclick="advance('alerts',{i},'Contained')">Contain</button>`)}</div><div class=panel><h3>STRIDE Controls</h3>${table([{Threat:'Spoofing',Control:'MFA, OIDC, mTLS'},{Threat:'Tampering',Control:'Validation, signatures, audit'},{Threat:'Repudiation',Control:'Immutable timestamps'},{Threat:'Information Disclosure',Control:'Encryption, DLP, least privilege'},{Threat:'Denial of Service',Control:'WAF, throttling, HA'},{Threat:'Elevation of Privilege',Control:'PAM, RBAC/ABAC, SoD'}])}</div></div>`}
+function services(){let sv=[['identity-service','IAM, MFA, RBAC'],['procurement-service','Demand, tender, award'],['operations-service','Vessel, cargo, stock'],['finance-service','Billing, payment, debt'],['document-service','Records and files'],['notification-service','Email, SMS, in-app'],['reporting-service','KPIs and read models'],['api-gateway','Routing, policy, rate limit'],['audit-service','Immutable event trail']];$('#app').innerHTML=hero('Microservice Operations','Independent domain services with API-first integration and observability.')+`<div class=servicegrid>${sv.map(s=>`<div class=service><b>${s[0]}</b><span class=muted>${s[1]}</span><div style="margin-top:10px">${badge('Healthy')}</div></div>`).join('')}</div><div class=panel><h3>DevSecOps Delivery Path</h3><div class=flow><span>Plan + STRIDE/PASTA</span>→<span>Git</span>→<span>SAST / SCA</span>→<span>SBOM</span>→<span>DAST / API Test</span>→<span>Security Gate</span>→<span>Deploy</span>→<span>Observe</span></div></div>`}
+function reports(){let total=db.invoices.reduce((a,b)=>a+b.amount,0),stock=db.terminals.reduce((a,b)=>a+b.stock,0);$('#app').innerHTML=hero('Reports & Analytics','Management reporting generated from the integrated operational view.')+`<div class=grid><div class=card><div class=label>Total Recorded Stock</div><strong>${stock.toLocaleString()} MT</strong></div><div class=card><div class=label>Invoice Value</div><strong>TZS ${(total/1e6).toFixed(1)}M</strong></div><div class=card><div class=label>Validated Demands</div><strong>${db.demands.filter(x=>x.status==='Validated').length}</strong></div><div class=card><div class=label>Open Tenders</div><strong>${db.tenders.filter(x=>x.status==='Open').length}</strong></div></div><div class=panel><h3>Demand Report</h3>${table(db.demands)}</div>`}
+function admin(){$('#app').innerHTML=hero('Administration','Manage users, roles and enterprise platform configuration.')+`<div class=panel><div class=toolbar><h3>User & Role Register</h3><button class="btn primary" onclick="newUser()">+ Add User</button></div>${table(db.users,`<button class=btn onclick="advance('users',{i},'Active')">Activate</button>`)}</div><div class=panel><h3>Security Configuration</h3><div class=flow><span>MFA: Enforced</span><span>Session Timeout: 15 min</span><span>RBAC: Enabled</span><span>PAM: Required</span><span>Audit: Immutable</span></div></div>`}
+function newUser(){openModal('Add User',`<div class=formgrid><div class=field><label>Name</label><input id=f1></div><div class=field><label>Email</label><input id=f3 type=email></div><div class=field><label>Role</label><select id=f2><option>Viewer</option><option>Operator</option><option>Approver</option><option>Administrator</option><option>Audit Viewer</option></select></div><div class=field><label>Two-factor authentication</label><select id=f4><option>Enabled</option><option>Required on first login</option></select></div><div class="field full"><button class="btn primary" onclick="saveUser()">Create User</button></div></div>`)}
+function saveUser(){if(!$('#f1').value)return toast('Enter user name');db.users.unshift({name:$('#f1').value,email:$('#f3').value||'not-set@pbpa.go.tz',role:$('#f2').value,mfa:$('#f4').value,status:'Active'});save('users',db.users);closeModal();admin();toast('User created')}
+function advance(k,i,status){db[k][i].status=status;save(k,db[k]);showView(document.querySelector('.nav button.active').dataset.view);toast('Status updated')}
+function removeRow(k,i){if(!confirm('Delete this record?'))return;db[k].splice(i,1);save(k,db[k]);showView(document.querySelector('.nav button.active').dataset.view);toast('Record deleted')}
+
+function beginLogin(){
+ let u=$('#loginUser').value.trim(),p=$('#loginPass').value;
+ if(u!=='admin@pbpa.go.tz'||p!=='PBPA@2026')return toast('Invalid username or password');
+ $('#loginStep').classList.add('hidden');$('#mfaStep').classList.remove('hidden');
+}
+function verifyMFA(){
+ if($('#mfaCode').value!=='260922')return toast('Invalid authenticator code');
+ sessionStorage.setItem('pbpa_session','active');$('#loginScreen').classList.add('hidden');toast('Secure login successful');
+}
+function backLogin(){$('#mfaStep').classList.add('hidden');$('#loginStep').classList.remove('hidden')}
+function logout(){sessionStorage.removeItem('pbpa_session');$('#loginScreen').classList.remove('hidden');backLogin();$('#loginPass').value='PBPA@2026';$('#mfaCode').value=''}
+function profileView(){
+ $('#app').innerHTML=hero('My Profile & Two-Factor Authentication','Manage identity security, authenticator status and active session controls.')+
+ `<div class=split><div class=panel><h3>Identity</h3><div class=formgrid><div class=field><label>Name</label><input value="System Administrator" disabled></div><div class=field><label>Email</label><input value="admin@pbpa.go.tz" disabled></div><div class=field><label>Role</label><input value="Administrator" disabled></div></div></div>
+ <div class=panel><h3>2FA Security</h3><p>${badge('Enabled')}</p><p class=muted>Authenticator-based verification is required after password authentication.</p><button class=btn onclick="toast('Recovery codes regenerated for demo')">Regenerate recovery codes</button> <button class=btn onclick="toast('All other sessions revoked')">Revoke other sessions</button></div></div>
+ <div class=panel><h3>Authentication Controls</h3><div class=flow><span>Password policy: Strong</span><span>MFA: Enforced</span><span>Session: Browser scoped</span><span>RBAC: Administrator</span><span>Audit logging: Active</span></div></div>`;
+}
+function filesView(){
+ $('#app').innerHTML=hero('Secure File Centre','Upload and manage controlled enterprise files and supporting documents.')+
+ `<div class=panel><div class=toolbar><h3>Upload</h3><span class=muted>PDF, images, Office documents and text files</span></div>
+ <div id=dropzone class=dropzone onclick="$('#fileInput').click()" ondragover="event.preventDefault();this.classList.add('drag')" ondragleave="this.classList.remove('drag')" ondrop="handleDrop(event)">
+ <b>Drop files here or click to browse</b><p class=muted>Files are stored in browser IndexedDB for this standalone demonstration.</p></div>
+ <input id=fileInput type=file multiple hidden onchange="uploadFiles(this.files)"></div>
+ <div class=panel><h3>File Register</h3>${table(db.files,`<button class=btn onclick="downloadDemoFile({i})">Open</button> <button class="btn danger" onclick="removeRow('files',{i})">Delete</button>`)}</div>`;
+}
+function handleDrop(e){e.preventDefault();e.currentTarget.classList.remove('drag');uploadFiles(e.dataTransfer.files)}
+function uploadFiles(files){
+ [...files].forEach(f=>db.files.unshift({id:'FIL-'+Math.floor(1000+Math.random()*8999),name:f.name,type:f.type||'unknown',size:(f.size/1024<1024?(f.size/1024).toFixed(1)+' KB':(f.size/1048576).toFixed(1)+' MB'),owner:'Current User',uploaded:new Date().toLocaleDateString(),status:'Stored'}));
+ save('files',db.files);filesView();toast(files.length+' file(s) registered');
+}
+function downloadDemoFile(i){toast('File metadata opened: '+db.files[i].name)}
+function apiView(){
+ $('#app').innerHTML=hero('API Management & Webhooks','Manage integration interfaces, credentials, event hooks and API lifecycle controls.')+
+ `<div class=grid><div class=card><div class=label>API Gateway</div><strong>Online</strong><span class=trend>Rate limiting active</span></div><div class=card><div class=label>Authentication</div><strong>OIDC</strong><span class=trend>OAuth 2.0 ready</span></div><div class=card><div class=label>API Keys</div><strong>${db.apiKeys.length}</strong></div><div class=card><div class=label>Webhooks</div><strong>${db.hooks.length}</strong></div></div>
+ <div class=split><div class=panel><div class=toolbar><h3>API Catalogue</h3><button class="btn primary" onclick="generateKey()">+ Generate API Key</button></div>
+ ${['GET /api/v1/health','GET /api/v1/demands','POST /api/v1/demands','GET /api/v1/vessels','POST /api/v1/files','GET /api/v1/audit'].map(x=>`<div class=api-card><code>${x}</code></div>`).join('')}</div>
+ <div class=panel><h3>API Credentials</h3>${table(db.apiKeys)}</div></div>
+ <div class=panel><div class=toolbar><h3>Webhook / Hook Registry</h3><button class="btn primary" onclick="newHook()">+ Add Webhook</button></div>${table(db.hooks,`<button class=btn onclick="testHook({i})">Test</button>`)}</div>
+ <div class=panel><h3>Recent Hook Events</h3><div id=hookLog class=hook-log>Ready. No events dispatched in this session.</div></div>`;
+}
+function generateKey(){
+ let secret='pbpa_'+crypto.getRandomValues(new Uint32Array(3)).join('');
+ db.apiKeys.unshift({id:'KEY-'+Math.floor(10+Math.random()*89),name:'Generated '+new Date().toLocaleTimeString(),scope:'read:enterprise',status:'Active'});save('apiKeys',db.apiKeys);
+ openModal('API Key Generated',`<p>Copy this demo secret now. It is shown once:</p><input value="${secret}" readonly onclick="this.select()"><p class=muted>Production secrets must be generated and stored server-side in a secrets vault.</p>`); 
+}
+function newHook(){openModal('Add Webhook',`<div class=formgrid><div class=field><label>Event</label><select id=f1><option>demand.created</option><option>demand.validated</option><option>vessel.arrived</option><option>tender.awarded</option><option>invoice.paid</option></select></div><div class="field full"><label>HTTPS Endpoint</label><input id=f2 placeholder="https://integration.example/hook"></div><div class="field full"><button class="btn primary" onclick="saveHook()">Register Webhook</button></div></div>`)}
+function saveHook(){let ep=$('#f2').value;if(!/^https:\/\//.test(ep))return toast('Webhook endpoint must use HTTPS');db.hooks.unshift({id:'WH-'+Math.floor(10+Math.random()*89),event:$('#f1').value,endpoint:ep,enabled:'Yes',last:'Never'});save('hooks',db.hooks);closeModal();apiView();toast('Webhook registered')}
+function testHook(i){db.hooks[i].last=new Date().toLocaleTimeString();save('hooks',db.hooks);let log=$('#hookLog');if(log)log.textContent=`[${new Date().toISOString()}] TEST ${db.hooks[i].event} -> ${db.hooks[i].endpoint}\nHTTP 202 (simulated standalone SPA)`;toast('Webhook test dispatched')}
+if(sessionStorage.getItem('pbpa_session')==='active')$('#loginScreen').classList.add('hidden');
+
+
+function aiSecurity(){
+ const rbac=[
+  {Role:'Prompt Engineer',Scopes:'invoke, view-logs',Data:'Public / Internal / Confidential (masked)',Rate:'120 req/min; 20k tokens/min',MFA:'Mandatory'},
+  {Role:'Model Operator',Scopes:'invoke, fine-tune, view-logs, deploy',Data:'Public / Internal / Confidential; Restricted by approved job',Rate:'60 req/min; 50k tokens/min',MFA:'Mandatory + step-up deploy'},
+  {Role:'Data Steward',Scopes:'invoke, view-logs',Data:'Assigned tenant/domain; all tiers by purpose',Rate:'60 req/min',MFA:'Mandatory'},
+  {Role:'Security Auditor',Scopes:'view-logs',Data:'Metadata all tiers; content by investigation approval',Rate:'30 req/min',MFA:'Mandatory'},
+  {Role:'End User',Scopes:'invoke',Data:'Public / Internal; Confidential by entitlement',Rate:'30 req/min; 8k tokens/min',MFA:'Mandatory for Confidential'},
+  {Role:'Service Account',Scopes:'invoke; deploy only for authorized CI/CD identity',Data:'Least-privilege tenant/domain',Rate:'300 req/min',MFA:'Workload identity + mTLS'}
+ ];
+ const stride=[
+  {Threat:'API key leaked in logs/errors',STRIDE:'Information Disclosure',Control:'Runtime Vault/Secrets Manager injection; log redaction; short-lived credentials',Rotation:'≤30 days static; immediate on exposure'},
+  {Threat:'Embedding credential exposed by CI/CD',STRIDE:'Information Disclosure / Tampering',Control:'OIDC workload identity; secret scanning; masked pipeline output',Rotation:'Per pipeline job / ephemeral'},
+  {Threat:'Vector DB password in image',STRIDE:'Information Disclosure',Control:'Dynamic DB credentials; runtime secret mount; image scanning',Rotation:'1–24 hour TTL preferred'},
+  {Threat:'Prompt injection requests secrets',STRIDE:'Information Disclosure / Elevation',Control:'Never place secrets in model context; broker tools; scoped tokens; output DLP',Rotation:'Immediate after suspected exfiltration'},
+  {Threat:'Secret modified by privileged actor',STRIDE:'Tampering / Elevation',Control:'PAM, MFA, dual control, immutable audit and versioned secrets',Rotation:'On compromise + scheduled policy'}
+ ];
+ const encryption=[
+  {Location:'Browser / Session',Risk:'Tokens and prompts',Protection:'TLS 1.3; Secure/HttpOnly/SameSite cookies; no access tokens in localStorage'},
+  {Location:'API Gateway ↔ Microservices',Risk:'Internal plaintext traffic',Protection:'mTLS and service identity'},
+  {Location:'Prompt Logs',Risk:'PII / confidential text',Protection:'Prompt hash instead of raw prompt; encrypted log store'},
+  {Location:'Embedding Cache',Risk:'Sensitive semantic content',Protection:'AES-256 envelope encryption with KMS'},
+  {Location:'Vector DB Index',Risk:'Embeddings and metadata',Protection:'Encryption at rest + field-level protection for identifiers'},
+  {Location:'Model Checkpoints',Risk:'Training data / intellectual property',Protection:'KMS envelope encryption + signed artifacts'},
+  {Location:'Uploaded Files',Risk:'Confidential documents',Protection:'SSE-KMS/AES-256 + malware scan + classification'},
+  {Location:'Backups',Risk:'Long-lived sensitive copies',Protection:'Separate KMS key + immutable/WORM backup'}
+ ];
+ const tests=[
+  {Test:'Token replay',Expected:'Reject unauthorized replay; short TTL/audience/issuer validation; log event',Pass:'Replay cannot access protected resource'},
+  {Test:'JWT alg=none',Expected:'Gateway rejects unsigned JWT',Pass:'401/403; no protected data'},
+  {Test:'JWT algorithm confusion',Expected:'Pin approved algorithm and key type',Pass:'Manipulated token rejected'},
+  {Test:'API key leakage in errors',Expected:'Secrets redacted; correlation ID only',Pass:'No credential in response/log'},
+  {Test:'Session fixation',Expected:'Rotate session after login and MFA',Pass:'Pre-auth session cannot become authenticated'},
+  {Test:'Malformed OAuth scopes',Expected:'Exact allowlist; reject wildcard/encoded/unknown scopes',Pass:'No privilege escalation'},
+  {Test:'MFA bypass',Expected:'Password-only state cannot access protected API',Pass:'Denied until MFA claim present'},
+  {Test:'Tenant crossover',Expected:'Server-side tenant binding and authorization',Pass:'Cross-tenant request denied and audited'},
+  {Test:'Service account interactive login',Expected:'Human login prohibited',Pass:'Authentication denied'},
+  {Test:'Unauthorized deploy/fine-tune',Expected:'OPA default-deny',Pass:'403 + immutable audit event'}
+ ];
+ $('#app').innerHTML=hero('GenAI Security Controls','Security architecture for PBPA multi-tenant AI services while retaining the original Corporate Enterprise Platform design.')+
+ `<div class=grid>
+  <div class=card><div class=label>RBAC Roles</div><strong>6</strong><span class=trend>Default-deny authorization</span></div>
+  <div class=card><div class=label>Secrets Control</div><strong>Vault</strong><span class=trend>Dynamic / short-lived credentials</span></div>
+  <div class=card><div class=label>Encryption</div><strong>mTLS</strong><span class=trend>KMS envelope encryption</span></div>
+  <div class=card><div class=label>Audit Integrity</div><strong>WORM</strong><span class=trend>Hash-chain evidence</span></div>
+ </div>
+ <div class=panel><h3>Role-Based Access Control Matrix</h3>${table(rbac)}</div>
+ <div class=panel><div class=toolbar><h3>OPA / Rego-Compatible Policy</h3><button class=btn onclick="showOPAPolicy()">View JSON Policy</button></div>
+ <div class=flow><span>Tenant Bound</span><span>Default Deny</span><span>Least Privilege</span><span>Scope Validation</span><span>MFA / Workload Identity</span></div></div>
+ <div class=panel><h3>Secrets Lifecycle — STRIDE</h3>${table(stride)}</div>
+ <div class=panel><h3>Encryption Boundaries</h3><div class=flow><span>User Browser<br>TLS 1.3</span>→<span>WAF / API Gateway<br>TLS</span>→<span>GenAI Gateway<br>mTLS</span>→<span>Inference Service<br>mTLS</span>→<span>Model Endpoint<br>TLS</span></div><br>${table(encryption)}</div>
+ <div class=panel><div class=toolbar><h3>Tamper-Evident Audit Logging</h3><button class=btn onclick="showAuditSample()">Sample Log</button></div>
+ <div class=flow><span>Request ID</span><span>Principal</span><span>Role</span><span>Prompt Hash</span><span>Model Version</span><span>Tokens</span><span>Latency</span><span>Classification</span><span>Human Review</span><span>Hash Chain</span><span>WORM</span></div></div>
+ <div class=panel><div class=toolbar><h3>SIEM Detection Queries</h3><button class=btn onclick="showSIEMQueries()">View Splunk / ELK Queries</button></div><p class=muted>Detect service-account access to restricted data, unauthorized deployment, abnormal token volume, and blocked/flagged output patterns.</p></div>
+ <div class=panel><h3>Authentication Hardening Test Cases</h3>${table(tests)}</div>`;
+}
+function showOPAPolicy(){
+ const p={
+  policy_version:"1.0",system:"PBPA GenAI Enterprise Platform",default_effect:"deny",tenant_isolation:true,
+  data_tiers:["public","internal","confidential","restricted"],
+  roles:{
+   prompt_engineer:{scopes:["invoke","view-logs"],data_tiers:["public","internal","confidential"],mfa:"required"},
+   model_operator:{scopes:["invoke","fine-tune","view-logs","deploy"],data_tiers:["public","internal","confidential","restricted"],mfa:"required"},
+   data_steward:{scopes:["invoke","view-logs"],data_tiers:["public","internal","confidential","restricted"],mfa:"required"},
+   security_auditor:{scopes:["view-logs"],data_tiers:["public","internal","confidential","restricted"],mfa:"required"},
+   end_user:{scopes:["invoke"],data_tiers:["public","internal","confidential"],mfa:"conditional_confidential"},
+   service_account:{scopes:["invoke"],data_tiers:["public","internal","confidential","restricted"],auth:"workload_identity_mtls",human_login:"denied"}
+  }
+ };
+ openModal('OPA / Rego-Compatible RBAC Policy',`<textarea style="min-height:420px;font-family:Consolas,monospace" readonly>${esc(JSON.stringify(p,null,2))}</textarea>`);
+}
+function showAuditSample(){
+ const a={
+  timestamp:new Date().toISOString(),request_id:"req_pbpa_01",tenant_id:"pbpa-main",
+  principal:{id:"svc-rag-01",type:"service_account",role:"service_account"},
+  action:"invoke",resource:{model:"pbpa-assistant",data_tier:"internal"},
+  prompt_hash:"sha256:8df0...a12c",model_version:"pbpa-genai-2026.09.2",
+  tokens:{input:842,output:219},latency_ms:734,output_classification:"allowed",
+  human_review:{required:false,outcome:null},prev_hash:"sha256:53ab...9911",entry_hash:"sha256:77ce...0dd4"
+ };
+ openModal('Tamper-Evident Audit Sample',`<textarea style="min-height:390px;font-family:Consolas,monospace" readonly>${esc(JSON.stringify(a,null,2))}</textarea>`);
+}
+function showSIEMQueries(){
+ const q=`SPLUNK
+index=pbpa_genai role="service_account" resource.data_tier="restricted"
+| stats count dc(resource.model) values(principal.id) by tenant_id
+
+index=pbpa_genai action="invoke"
+| bin _time span=5m
+| stats sum(tokens.input) as input_tokens count by principal.id,_time
+
+ELK / KQL
+principal.role:"service_account" AND resource.data_tier:"restricted"
+action:"deploy" AND NOT principal.role:"model_operator"
+output_classification:("blocked" OR "flagged")`;
+ openModal('Splunk / ELK Detection Queries',`<textarea style="min-height:320px;font-family:Consolas,monospace" readonly>${esc(q)}</textarea>`);
+}
+
+showView('dashboard');
+</script>
+</body></html>
